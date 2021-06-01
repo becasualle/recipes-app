@@ -1,0 +1,83 @@
+/* Adding global styles */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #004643;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+
+}
+
+p {
+    color: #abd1c6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #fffffe;
+}
+
+button {
+    background-color: #f9bc60;
+    color: #001e1d;
+}
+
+/* Style Main Container */
+.container {
+    margin: auto;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
+/* Merge input with search button */
+input, button {
+    border: 1px solid #f9bc60;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    font-size: 14px;
+    padding: 8px 10px;
+    margin: 0;
+}
+
+input[type="text"] {
+    width: 300px;
+}
+
+.search-btn {
+    cursor: pointer;
+    border-left: 0;
+    border-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.random-btn {
+    cursor: pointer;
+    margin-left: 10px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+/* Shrink search */
+@media(max-width: 800px) {}
+@media(max-width: 700px) {}
+@media(max-width: 500px) {
+    input[type="text"] {
+        width: 100%;
+    }
+}
