@@ -11,7 +11,9 @@ function searchMeal(e) {
     e.preventDefault();
 
     // Clear single meal
-    single_mealEl.innerHTML = '';
+    if(!mealsEl.innerHTML == ''){
+        single_mealEl.innerHTML = '';
+      }
 
     // Get search term
     const term = search.value;
@@ -40,7 +42,20 @@ function searchMeal(e) {
             // Clear search text
             search.value = '';
     } else {
-        alert('Please enter a search term');
+        if (!resultHeading.innerHTML == '') {
+            const resultHeadingSave = resultHeading.innerHTML;
+            resultHeading.innerHTML =
+              "<p>Please don't leave the search box empty</p>";
+            setTimeout(() => {
+              resultHeading.innerHTML = resultHeadingSave;
+            }, 2000);
+          } else {
+            resultHeading.innerHTML =
+              "<p>Please don't leave the search box empty</p>";
+            setTimeout(() => {
+              resultHeading.innerHTML = '';
+            }, 2000);
+          }
     }
 
 }
@@ -53,8 +68,24 @@ function getMealByID(mealID) {
             const meal = data.meals[0];
 
             addMealToDOM(meal);
-        })
-}
+        });
+};
+
+// Fetch random meal form API
+function getRandomMeal() {
+    // Clear meals and heading
+    mealsEl.innerHTML = '';
+    resultHeading.innerHTML = '';
+
+    fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+        .then(res => res.json())
+        .then(data => {
+            const meal = data.meals[0];
+
+            addMealToDOM(meal);
+        });
+};
+
 
 // Add meal to DOM
 function addMealToDOM(meal){
@@ -91,9 +122,10 @@ function addMealToDOM(meal){
 
 // Event listeners
 submit.addEventListener('submit', searchMeal);
+random.addEventListener('click', getRandomMeal);
 
 mealsEl.addEventListener('click', e => {
-    // get meal element and it's id (data-meailid)
+    // get meal element and it's id (data-meailID)
     const mealInfo = e.path.find(item => {
         if(item.classList){
             return item.classList.contains('meal-info');
